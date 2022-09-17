@@ -1,0 +1,174 @@
+[submodule "build/Externals/cgal"]
+	path = build/Externals/cgal
+	url = https://github.com/CGAL/cgal.git
+[submodule "build/Externals/eigen"]
+	path = build/Externals/eigen
+	url = https://gitlab.com/libeigen/eigen.git
+[submodule "Externals/eigen"]
+	path = Externals/eigen
+	url = https://gitlab.com/libeigen/eigen.git
+[submodule "Externals/cgal"]
+	path = Externals/cgal
+	url = https://github.com/CGAL/cgal.git
+[submodule "Externals/boost/config"]
+	path = Externals/boost/config
+	url = https://github.com/boostorg/config.git
+[submodule "Externals/boost/predef"]
+	path = Externals/boost/predef
+	url = https://github.com/boostorg/predef.git
+[submodule "Externals/boost/lexical"]
+	path = Externals/boost/lexical
+	url = https://github.com/boostorg/lexical_cast.git
+[submodule "Externals/boost/range"]
+	path = Externals/boost/range
+	url = https://github.com/boostorg/range.git
+[submodule "Externals/boost/assert"]
+	path = Externals/boost/assert
+	url = https://github.com/boostorg/assert.git
+[submodule "Externals/boost/iterator"]
+	path = Externals/boost/iterator
+	url = https://github.com/boostorg/iterator.git
+[submodule "Externals/boost/mpl"]
+	path = Externals/boost/mpl
+	url = https://github.com/boostorg/mpl.git
+[submodule "Externals/boost/preprocessor"]
+	path = Externals/boost/preprocessor
+	url = https://github.com/boostorg/preprocessor.git
+[submodule "Externals/boost/type_traits"]
+	path = Externals/boost/type_traits
+	url = https://github.com/boostorg/type_traits.git
+[submodule "Externals/boost/static_assert"]
+	path = Externals/boost/static_assert
+	url = https://github.com/boostorg/static_assert.git
+[submodule "Externals/boost/core"]
+	path = Externals/boost/core
+	url = https://github.com/boostorg/core.git
+[submodule "Externals/boost/detail"]
+	path = Externals/boost/detail
+	url = https://github.com/boostorg/detail.git
+[submodule "Externals/boost/concept_check"]
+	path = Externals/boost/concept_check
+	url = https://github.com/boostorg/concept_check.git
+[submodule "Externals/boost/utility"]
+	path = Externals/boost/utility
+	url = https://github.com/boostorg/utility.git
+[submodule "Externals/boost/throw_exception"]
+	path = Externals/boost/throw_exception
+	url = https://github.com/boostorg/throw_exception.git
+[submodule "Externals/boost/numeric/conversion"]
+	path = Externals/boost/numeric/conversion
+	url = https://github.com/boostorg/numeric_conversion.git
+[submodule "Externals/boost/integer"]
+	path = Externals/boost/integer
+	url = https://github.com/boostorg/integer.git
+[submodule "Externals/boost/array"]
+	path = Externals/boost/array
+	url = https://github.com/boostorg/array.git
+[submodule "Externals/boost/container"]
+	path = Externals/boost/container
+	url = https://github.com/boostorg/container.git
+[submodule "build/Externals/boost/move"]
+	path = build/Externals/boost/move
+	url = https://github.com/boostorg/move.git
+[submodule "Externals/boost/move"]
+	path = Externals/boost/move
+	url = https://github.com/boostorg/move.git
+[submodule "Externals/boost/variant"]
+	path = Externals/boost/variant
+	url = https://github.com/boostorg/variant.git
+[submodule "build/Externals/boost/type_index"]
+	path = build/Externals/boost/type_index
+	url = https://github.com/boostorg/type_index.git
+[submodule "Externals/boost/type_index"]
+	path = Externals/boost/type_index
+	url = https://github.com/boostorg/type_index.git
+[submodule "Externals/boost/container_hash"]
+	path = Externals/boost/container_hash
+	url = https://github.com/boostorg/container_hash.git
+[submodule "build/Externals/boost/optional"]
+	path = build/Externals/boost/optional
+	url = https://github.com/boostorg/optional.git
+[submodule "Externals/boost/optional"]
+	path = Externals/boost/optional
+	url = https://github.com/boostorg/optional.git
+[submodule "Externals/boost/any"]
+	path = Externals/boost/any
+	url = https://github.com/boostorg/any.git
+[submodule "build/Externals/boost/math"]
+	path = build/Externals/boost/math
+	url = https://github.com/boostorg/math.git
+[submodule "Externals/boost/math"]
+	path = Externals/boost/math
+	url = https://github.com/boostorg/math.git
+[submodule "Externals/boost/tuple"]
+	path = Externals/boost/tuple
+	url = https://github.com/boostorg/tuple.git
+[submodule "Externals/boost/random"]
+	path = Externals/boost/random
+	url = https://github.com/boostorg/random.git
+[submodule "Externals/boost/io"]
+	path = Externals/boost/io
+	url = https://github.com/boostorg/io.git
+[submodule "Externals/boost/algorithm"]
+	path = Externals/boost/algorithm
+	url = https://github.com/boostorg/algorithm.git
+[submodule "Externals/boost/multiprecision"]
+	path = Externals/boost/multiprecision
+	url = https://github.com/boostorg/multiprecision.git
+[submodule "Externals/boost/unordered"]
+	path = Externals/boost/unordered
+	url = https://github.com/boostorg/unordered.git
+[submodule "Externals/boost/mp11"]
+	path = Externals/boost/mp11
+	url = https://github.com/boostorg/mp11.git
+[submodule "Externals/boost/foreach"]
+	path = Externals/boost/foreach
+	url = https://github.com/boostorg/foreach.git
+[submodule "build/Externals/boost/property_map"]
+	path = build/Externals/boost/property_map
+	url = https://github.com/boostorg/property_map.git
+[submodule "Externals/boost/property_map"]
+	path = Externals/boost/property_map
+	url = https://github.com/boostorg/property_map.git
+[submodule "build/Externals/boost/smart_ptr"]
+	path = build/Externals/boost/smart_ptr
+	url = https://github.com/boostorg/smart_ptr.git
+[submodule "Externals/boost/smart_ptr"]
+	path = Externals/boost/smart_ptr
+	url = https://github.com/boostorg/smart_ptr.git
+[submodule "Externals/boost/intrusive"]
+	path = Externals/boost/intrusive
+	url = https://github.com/boostorg/intrusive.git
+[submodule "Externals/boost/fusion"]
+	path = Externals/boost/fusion
+	url = https://github.com/boostorg/fusion.git
+[submodule "Externals/boost/bimap"]
+	path = Externals/boost/bimap
+	url = https://github.com/boostorg/bimap.git
+[submodule "Externals/boost/serialization"]
+	path = Externals/boost/serialization
+	url = https://github.com/boostorg/serialization.git
+[submodule "Externals/boost/multi_index"]
+	path = Externals/boost/multi_index
+	url = https://github.com/boostorg/multi_index.git
+[submodule "Externals/boost/bind"]
+	path = Externals/boost/bind
+	url = https://github.com/boostorg/bind.git
+[submodule "Externals/boost/format"]
+	path = Externals/boost/format
+	url = https://github.com/boostorg/format.git
+[submodule "Externals/boost/graph"]
+	path = Externals/boost/graph
+	url = https://github.com/boostorg/graph.git
+[submodule "Externals/boost/lambda"]
+	path = Externals/boost/lambda
+	url = https://github.com/boostorg/lambda.git
+[submodule "Externals/boost/heap"]
+	path = Externals/boost/heap
+	url = https://github.com/boostorg/heap.git
+[submodule "Externals/boost/parameter"]
+	path = Externals/boost/parameter
+	url = https://github.com/boostorg/parameter.git
+[submodule "Externals/boost/dynamic_bitset"]
+	path = Externals/boost/dynamic_bitset
+	url = https://github.com/boostorg/dynamic_bitset.git
