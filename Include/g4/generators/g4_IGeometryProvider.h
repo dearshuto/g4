@@ -1,17 +1,24 @@
-#ifndef g4_IMeshProvider_h
-#define g4_IMeshProvider_h
-
 #include <cstdint>
 
 namespace g4 {
 
-struct Vertex;
-struct EdgeConnection;
+struct EdgeConnection
+{
+    uint32_t index0;
+    uint32_t index1;
+};
 
-class IMeshProvider
+struct Vertex
+{
+    float x;
+    float y;
+    float z;
+};
+
+class IGeometryProvider
 {
 public:
-    virtual ~IMeshProvider() noexcept = default;
+    virtual ~IGeometryProvider() noexcept = default;
 
     virtual int GetVertexCount() const noexcept = 0;
 
@@ -24,5 +31,3 @@ public:
 };
 
 }  // namespace g4
-
-#endif /* g4_IMeshProvider_h */

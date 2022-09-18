@@ -9,6 +9,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/Libraries)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/Libraries)
 link_directories(${CMAKE_SOURCE_DIR}/Libraries)
 
+# add_definitions(-DCGAL_EIGEN3_ENABLED)
 add_library(g4 STATIC)
 target_include_directories(g4
     PUBLIC ${CMAKE_SOURCE_DIR}/Include
@@ -107,5 +108,6 @@ target_include_directories(g4
 
 target_compile_features(g4 PUBLIC cxx_std_20)
 
+add_subdirectory(Examples)
 add_subdirectory(Include)
 add_subdirectory(Sources)
