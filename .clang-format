@@ -27,3 +27,5 @@ BraceWrapping:
   AfterFunction: true
   AfterStruct: true
   SplitEmptyFunction: false
+
+CompactNamespaces: true
