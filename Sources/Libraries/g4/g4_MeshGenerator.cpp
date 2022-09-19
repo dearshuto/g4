@@ -101,7 +101,7 @@ void Generator::Execute(IMeshBuffer* pBuffer,
                             criteria,                             // meshing criteria
                             CGAL::Manifold_with_boundary_tag());  // require manifold mesh
 
-    CGAL::Polyhedron_3<Kernel> outputMesh;
+    CGAL::Polyhedron_3<CGAL::Polyhedron_traits_with_normals_3<Kernel>> outputMesh;
     CGAL::facets_in_complex_2_to_triangle_mesh(c2t3, outputMesh);
 
     // 頂点
