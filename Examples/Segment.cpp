@@ -18,7 +18,7 @@ public:
     {
         pOutVertex->x = index == 0 ? 0.0f : 1.0f;
         pOutVertex->y = 0.0f;
-        pOutVertex->z - 0.0f;
+        pOutVertex->z = 0.0f;
     }
 
     virtual int GetEdgeCount() const noexcept override { return 1; }
