@@ -1,19 +1,6 @@
-#include <cstdint>
+#include <g4/generators/g4_Types.h>
 
 namespace g4 {
-
-struct EdgeConnection
-{
-    uint32_t index0;
-    uint32_t index1;
-};
-
-struct Vertex
-{
-    float x;
-    float y;
-    float z;
-};
 
 class IGeometryProvider
 {
