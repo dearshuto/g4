@@ -111,3 +111,19 @@ target_compile_features(g4 PUBLIC cxx_std_20)
 add_subdirectory(Examples)
 add_subdirectory(Include)
 add_subdirectory(Sources)
+
+get_target_property(G4_HEADERS g4 SOURCES)
+list(FILTER G4_HEADERS INCLUDE REGEX "[.]h$")
+source_group(
+    TREE ${CMAKE_CURRENT_SOURCE_DIR}/Include
+    PREFIX "Header Files"
+    FILES ${G4_HEADERS}
+)
+
+get_target_property(G4_SOURCES g4 SOURCES)
+list(FILTER G4_SOURCES INCLUDE REGEX "[.]cpp$")
+source_group(
+    TREE ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Libraries/
+    PREFIX "Source Files"
+    FILES ${G4_SOURCES}
+)
