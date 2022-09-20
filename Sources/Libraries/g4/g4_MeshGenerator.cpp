@@ -86,7 +86,12 @@ void Generator::Execute(IMeshBuffer* pBuffer,
         }
     }
 
-    m_Generator.Generate(pBuffer, vn.data(), static_cast<int>(vn.size()));
+    const auto generateParams = g4::generators::detail::CgalMeshGenerator::GenerateParams{}
+                                    .SetAngle(20.0f)
+                                    .SetRadius(30.0f)
+                                    .SetDistance(0.375f)
+                                    .SetPoints(vn.data(), static_cast<int>(vn.size()));
+    m_Generator.Generate(pBuffer, generateParams);
 }
 
 }  // namespace g4

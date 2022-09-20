@@ -22,6 +22,13 @@ void CgalMeshGenerator::Generate(IMeshBuffer* pBuffer,
                                  const Point* pVertexAndNormalBuffer,
                                  int bufferLength) const noexcept
 {
+    const auto generateParams = GenerateParams{}.SetPoints(pVertexAndNormalBuffer, bufferLength);
+    Generate(pBuffer, generateParams);
+}
+
+void CgalMeshGenerator::Generate(IMeshBuffer* pBuffer,
+                                 const GenerateParams& generateParams) const noexcept
+{
     using Kernel = CGAL::Exact_predicates_inexact_constructions_kernel;
     using FT     = Kernel::FT;
     using Point_map =
@@ -31,11 +38,16 @@ void CgalMeshGenerator::Generate(IMeshBuffer* pBuffer,
     using Surface_3 =
         CGAL::Implicit_surface_3<Kernel, CGAL::Poisson_reconstruction_function<Kernel>>;
 
-    // // Poisson options
-    FT sm_angle    = 20.0;   // Min triangle angle in degrees.
-    FT sm_radius   = 30;     // Max triangle size w.r.t. point set average spacing.
-    FT sm_distance = 0.375;  // Surface Approximation error w.r.t. point set average spacing.
+    // Poisson options
+    FT sm_angle = generateParams.GetAngle();  // Min triangle angle in degrees.
+    FT sm_radius =
+        generateParams.GetRadius();  // Max triangle size w.r.t. point set average spacing.
+    FT sm_distance =
+        generateParams
+            .GetDistance();  // Surface Approximation error w.r.t. point set average spacing.
 
+    const auto* pVertexAndNormalBuffer = generateParams.GetPoints();
+    const auto bufferLength            = generateParams.GetBufferLength();
     std::vector<std::pair<Kernel::Point_3, Kernel::Vector_3>> v(bufferLength);
     std::transform(
         pVertexAndNormalBuffer, pVertexAndNormalBuffer + bufferLength, std::begin(v),
