@@ -6,12 +6,13 @@
 namespace g4 {
 
 struct Point;
+struct Vertex;
 
 class IPointGenerator
 {
 public:
     virtual ~IPointGenerator() noexcept = default;
-
+    
     virtual int Generate(Point* pOutBuffer,
                          int bufferLength,
                          const Vertex& vertex,
