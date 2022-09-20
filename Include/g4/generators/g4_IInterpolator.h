@@ -6,12 +6,13 @@
 namespace g4 {
 
 struct InterpolatedVertex;
+struct Vertex;
 
 class IInterpolator
 {
 public:
     virtual ~IInterpolator() noexcept = default;
-
+    
     virtual int Execute(InterpolatedVertex* pOutBuffer,
                         int bufferLength,
                         const Vertex& vertex0,
