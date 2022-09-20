@@ -10,12 +10,11 @@ int LinearInterpolator::Execute(InterpolatedVertex* pOutBuffer,
                                 const Vertex& vertex0,
                                 const Vertex& vertex1) const noexcept
 {
-    constexpr auto writeCount = 20;
-    for (auto index = 0; index < (writeCount - 1); ++index) {
+    for (auto index = 0; index < bufferLength; ++index) {
         const auto begin    = Eigen::Vector3f{vertex0.x, vertex0.y, vertex0.z};
         const auto end      = Eigen::Vector3f{vertex1.x, vertex1.y, vertex1.z};
         const auto gradient = (end - begin).normalized();
-        const auto t        = static_cast<float>(index + 1) / static_cast<float>(writeCount);
+        const auto t        = static_cast<float>(index + 1) / static_cast<float>(bufferLength + 1);
         const auto interpolatedPoint = (1.0f - t) * begin + t * end;
 
         const auto x = interpolatedPoint.x();
@@ -31,7 +30,7 @@ int LinearInterpolator::Execute(InterpolatedVertex* pOutBuffer,
         pOutBuffer[index].gradient.z = gradient.z();
     }
 
-    return writeCount - 1;
+    return bufferLength;
 }
 
 }}  // namespace g4::util

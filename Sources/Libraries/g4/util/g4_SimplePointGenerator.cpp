@@ -3,6 +3,8 @@
 
 #include <Eigen/Core>
 #include <Eigen/Dense>
+#include <Eigen/Geometry>
+#include <vector>
 
 namespace g4 { namespace util {
 
@@ -11,36 +13,37 @@ int SimplePointGenerator::Generate(Point* pOutBuffer,
                                    const Vertex& vertex,
                                    const Vertex& gradient) const noexcept
 {
-    int pointCount = 0;
+    const auto pointCount = bufferLength;
+    std::vector<Eigen::Vector3f> normals;
+    for (auto index = 0; index < pointCount; ++index) {
+        const auto rotation = Eigen::Quaternionf::FromTwoVectors(
+            Eigen::Vector3f{1.0f, 0.0f, 0.0f}, Eigen::Vector3f{gradient.x, gradient.y, gradient.z});
+        const auto angle = static_cast<float>(index) * 2.0f * static_cast<float>(M_PI) /
+                           static_cast<float>(pointCount);
+        const auto localRotation =
+            Eigen::Quaternionf{Eigen::AngleAxis(angle, Eigen::Vector3f{1.0f, 0.0f, 0.0f})};
 
-    const auto rotation = Eigen::Quaternionf::FromTwoVectors(
-        Eigen::Vector3f{1.0f, 0.0f, 0.0f}, Eigen::Vector3f{gradient.x, gradient.y, gradient.z});
-    [[maybe_unused]] const auto aa  = rotation.conjugate() * Eigen::Vector3f{};
-    const Eigen::Vector3f normals[] = {
-        rotation.conjugate() * (0.707 * Eigen::Vector3f{0.0f, 1.0f, 1.0f}),
-        rotation.conjugate() * (0.707 * Eigen::Vector3f{0.0f, -1.0f, 1.0f}),
-        rotation.conjugate() * (0.707 * Eigen::Vector3f{0.0f, 1.0f, -1.0f}),
-        rotation.conjugate() * (0.707 * Eigen::Vector3f{0.0f, -1.0f, -1.0f}),
-    };
+        const auto initNormal = Eigen::Vector3f{0.0f, 1.0f, 0.0f};
+        const auto normal     = rotation * localRotation * initNormal;
 
-    for (const auto& normal : normals) {
-        for (int i = 0; i < 1; ++i) {
-            const auto position       = Eigen::Vector3f{vertex.x, vertex.y, vertex.z};
-            const auto positionOffset = 1.01f * static_cast<float>(i + 1) * normal;
-            const auto p              = position + positionOffset;
+        normals.push_back(normal);
+    }
 
-            // 位置
-            pOutBuffer[pointCount].vertex.x = p.x();
-            pOutBuffer[pointCount].vertex.y = p.y();
-            pOutBuffer[pointCount].vertex.z = p.z();
+    for (auto index = 0; index < normals.size(); ++index) {
+        const auto& normal        = normals[index];
+        const auto position       = Eigen::Vector3f{vertex.x, vertex.y, vertex.z};
+        const auto positionOffset = 0.01f * normal;
+        const auto p              = position + positionOffset;
 
-            // 法線
-            pOutBuffer[pointCount].normal.x = normal.x();
-            pOutBuffer[pointCount].normal.y = normal.y();
-            pOutBuffer[pointCount].normal.z = normal.z();
+        // 位置
+        pOutBuffer[index].vertex.x = p.x();
+        pOutBuffer[index].vertex.y = p.y();
+        pOutBuffer[index].vertex.z = p.z();
 
-            ++pointCount;
-        }
+        // 法線
+        pOutBuffer[index].normal.x = normal.x();
+        pOutBuffer[index].normal.y = normal.y();
+        pOutBuffer[index].normal.z = normal.z();
     }
 
     return pointCount;

@@ -172,3 +172,6 @@
 [submodule "Externals/boost/dynamic_bitset"]
 	path = Externals/boost/dynamic_bitset
 	url = https://github.com/boostorg/dynamic_bitset.git
+[submodule "Externals/googletest"]
+	path = Externals/googletest
+	url = https://github.com/google/googletest.git
