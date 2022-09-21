@@ -1,4 +1,5 @@
 target_sources(g4 PRIVATE
+    g4_DirectGenerator.h
     g4_Generator.h
     g4_IGeometryProvider.h
     g4_IInterpolator.h

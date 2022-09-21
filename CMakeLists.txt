@@ -9,6 +9,13 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/Libraries)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/Libraries)
 link_directories(${CMAKE_SOURCE_DIR}/Libraries)
 
+# gtest
+# SET(BUILD_GMOCK OFF CACHE BOOL "Use some expat option")
+# SET(INSTALL_GTEST OFF CACHE BOOL "Use some expat option")
+option(BUILD_GMOCK "" OFF)
+option(INSTALL_GTEST "" OFF)
+add_subdirectory(Externals/googletest)
+
 # add_definitions(-DCGAL_EIGEN3_ENABLED)
 add_library(g4 STATIC)
 target_include_directories(g4
@@ -111,6 +118,7 @@ target_compile_features(g4 PUBLIC cxx_std_20)
 add_subdirectory(Examples)
 add_subdirectory(Include)
 add_subdirectory(Sources)
+add_subdirectory(Tests)
 
 get_target_property(G4_HEADERS g4 SOURCES)
 list(FILTER G4_HEADERS INCLUDE REGEX "[.]h$")
