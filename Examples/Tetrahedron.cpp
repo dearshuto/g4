@@ -4,6 +4,7 @@
 #include <g4/generators/g4_IMeshProvider.h>
 
 #include <array>
+#include <cstring>
 #include <fstream>
 #include <iostream>
 #include <vector>
