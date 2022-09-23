@@ -120,7 +120,11 @@ option(G4_ENABLE_HEADER_ONLY_MODE "" OFF)
 
 if(G4_ENABLE_HEADER_ONLY_MODE)
     message("Header only mode enabled")
-    target_compile_definitions(g4 PUBLIC G4_HEADER_ONLY_MODE)
+    target_compile_definitions(g4
+        PUBLIC G4_HEADER_ONLY_MODE
+        PUBLIC CGAL_DISABLE_GMP
+        PUBLIC CGAL_DISABLE_MPFR
+    )
 endif()
 
 add_subdirectory(Examples)
