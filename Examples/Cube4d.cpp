@@ -2,7 +2,7 @@
 #include <g4/generators/g4_Generator.h>
 #include <g4/generators/g4_IGeometryProvider.h>
 #include <g4/generators/g4_Types.h>
-#include <g4/io/g4_WavefrontObjFileFotmatter.h>
+#include <g4/io/g4_WavefrontObjFileFormatter.h>
 #include <g4/util/g4_LinearInterpolator.h>
 #include <g4/util/g4_SimplePointGenerator.h>
 #include <g4/util/g4_VectorMeshBuffer.h>
