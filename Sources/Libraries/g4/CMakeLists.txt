@@ -3,5 +3,6 @@ target_sources(g4 PRIVATE
 )
 
 add_subdirectory(common)
+add_subdirectory(io)
 add_subdirectory(generators)
 add_subdirectory(util)

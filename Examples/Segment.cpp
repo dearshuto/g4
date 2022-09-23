@@ -2,10 +2,9 @@
 #include <g4/generators/g4_IGeometryProvider.h>
 #include <g4/generators/g4_IMeshBuffer.h>
 #include <g4/generators/g4_IMeshProvider.h>
+#include <g4/io/g4_WavefrontObjFileFotmatter.h>
 
-#include <fstream>
 #include <iostream>
-#include <vector>
 
 class SegmentProvider : public g4::IGeometryProvider
 {
@@ -71,23 +70,8 @@ int main()
     std::cout << "Vertex Count: " << meshBuffer.GetVertexBuffer().size() << std::endl;
     std::cout << "Index Count: " << meshBuffer.GetIndexBuffer().size() << std::endl;
 
-    std::ofstream ofstream{"test.obj"};
-
-    // 頂点
-    for (auto index = 0; index < meshBuffer.GetVertexBuffer().size(); index += 3) {
-        const auto vertex0 = meshBuffer.GetVertexBuffer()[index + 0];
-        const auto vertex1 = meshBuffer.GetVertexBuffer()[index + 1];
-        const auto vertex2 = meshBuffer.GetVertexBuffer()[index + 2];
-        ofstream << "v " << vertex0 << " " << vertex1 << " " << vertex2 << std::endl;
-    }
-
-    // 面
-    for (auto index = 0; index < meshBuffer.GetIndexBuffer().size(); index += 3) {
-        const auto index0 = 1 + meshBuffer.GetIndexBuffer()[index + 0];
-        const auto index1 = 1 + meshBuffer.GetIndexBuffer()[index + 1];
-        const auto index2 = 1 + meshBuffer.GetIndexBuffer()[index + 2];
-        ofstream << "f " << index0 << "// " << index1 << "// " << index2 << "//" << std::endl;
-    }
+    g4::io::WavefrontObjFileFormatter fileFormatter;
+    fileFormatter.Export("test.obj", &meshBuffer);
 
     return EXIT_SUCCESS;
 }
