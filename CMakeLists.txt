@@ -115,6 +115,14 @@ target_include_directories(g4
 
 target_compile_features(g4 PUBLIC cxx_std_20)
 
+# ヘッダーオンリーモードの有効・無効を切り替えるオプション
+option(G4_ENABLE_HEADER_ONLY_MODE "" OFF)
+
+if(G4_ENABLE_HEADER_ONLY_MODE)
+    message("Header only mode enabled")
+    target_compile_definitions(g4 PUBLIC G4_HEADER_ONLY_MODE)
+endif()
+
 add_subdirectory(Examples)
 add_subdirectory(Include)
 add_subdirectory(Sources)
