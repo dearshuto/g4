@@ -135,3 +135,5 @@ source_group(
     PREFIX "Source Files"
     FILES ${G4_SOURCES}
 )
+
+install(TARGETS g4 DESTINATION .)
