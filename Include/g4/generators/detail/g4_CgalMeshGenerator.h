@@ -1,6 +1,25 @@
 #ifndef g4_CgalMeshGenerator_h_
 #define g4_CgalMeshGenerator_h_
 
+#ifdef G4_HEADER_ONLY_MODE
+#include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
+#include <CGAL/IO/facets_in_complex_2_to_triangle_mesh.h>
+#include <CGAL/IO/read_points.h>
+#include <CGAL/Implicit_surface_3.h>
+#include <CGAL/Poisson_reconstruction_function.h>
+#include <CGAL/Polygon_mesh_processing/distance.h>
+#include <CGAL/Polyhedron_3.h>
+#include <CGAL/Polyhedron_traits_with_normals_3.h>
+#include <CGAL/Surface_mesh_default_triangulation_3.h>
+#include <CGAL/compute_average_spacing.h>
+#include <CGAL/make_surface_mesh.h>
+#include <CGAL/property_map.h>
+#include <g4/generators/g4_IMeshBuffer.h>
+#include <g4/generators/g4_Types.h>
+
+#include <vector>
+#endif
+
 namespace g4 {
 struct Point;
 class IMeshBuffer;
@@ -62,11 +81,20 @@ public:
 
     ~CgalMeshGenerator() noexcept = default;
 
-    void Generate(IMeshBuffer* pOutBuffer,
+    void Generate(IMeshBuffer* pBuffer,
                   const Point* pVertexAndNormalBuffer,
-                  int bufferLength) const noexcept;
+                  int bufferLength) const noexcept
+    {
+        const auto generateParams =
+            GenerateParams{}.SetPoints(pVertexAndNormalBuffer, bufferLength);
+        Generate(pBuffer, generateParams);
+    }
 
-    void Generate(IMeshBuffer* pOutBuffer, const GenerateParams& generateParams) const noexcept;
+#ifdef G4_HEADER_ONLY_MODE
+#include "../../../../Sources/Libraries/g4/generators/detail/g4_CgalMeshGenerator.cpp"
+#else
+    void Generate(IMeshBuffer* pBuffer, const GenerateParams& generateParams) const noexcept;
+#endif
 };
 
 }}}  // namespace g4::generators::detail
