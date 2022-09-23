@@ -129,7 +129,11 @@ endif()
 
 add_subdirectory(Examples)
 add_subdirectory(Include)
-add_subdirectory(Sources)
+
+if(NOT G4_ENABLE_HEADER_ONLY_MODE)
+    add_subdirectory(Sources)
+endif()
+
 add_subdirectory(Tests)
 
 get_target_property(G4_HEADERS g4 SOURCES)
