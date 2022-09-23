@@ -1,6 +1,6 @@
 #include <g4/generators/g4_DirectGenerator.h>
 #include <g4/generators/g4_Types.h>
-#include <g4/io/g4_WavefrontObjFileFotmatter.h>
+#include <g4/io/g4_WavefrontObjFileFormatter.h>
 #include <g4/util/g4_VectorMeshBuffer.h>
 
 #include <Eigen/Dense>
