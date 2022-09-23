@@ -1,3 +1,6 @@
+#ifndef g4_MeshBuffer_H_
+#define g4_MeshBuffer_H_
+
 #include <cstdint>
 
 namespace g4 {
@@ -14,3 +17,5 @@ public:
     virtual void PushIndex(uint32_t index) noexcept = 0;
 };
 }  // namespace g4
+
+#endif
