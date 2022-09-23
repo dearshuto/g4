@@ -1,6 +1,6 @@
 # find_package(GMP REQUIRED)
 
-if(UNIX)
+if(UNIX AND !APPLE)
     SET(EXAMPLE_LINK_LIBS
         gmp
         mpfr)
