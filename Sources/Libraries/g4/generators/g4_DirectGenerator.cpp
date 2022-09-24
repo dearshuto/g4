@@ -8,7 +8,7 @@ void DirectGenerator::Generate(IMeshBuffer *pMeshBuffer,
                                const Point *pPoints,
                                int pointCount) const noexcept
 {
-    const auto generateParams = g4::generators::detail::CgalMeshGenerator::GenerateParams{}
+    const auto generateParams = g4::generators::CgalSurfaceReconstructor::GenerateParams{}
                                     .SetAngle(3.141592f / 3.0f)
                                     .SetRadius(1.0f)
                                     .SetDistance(0.375f)

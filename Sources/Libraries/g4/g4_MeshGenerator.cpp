@@ -1,3 +1,4 @@
+#include <g4/generators/g4_CgalSurfaceReconstructor.h>
 #include <g4/generators/g4_Generator.h>
 #include <g4/generators/g4_IGeometryProvider.h>
 #include <g4/generators/g4_IMeshBuffer.h>
@@ -27,6 +28,17 @@ void Generator::Execute(IMeshBuffer* pBuffer,
                         const IGeometryProvider* pGeometryProvider,
                         const IInterpolator* pInterpolator,
                         const IPointGenerator* pPointGenerator) const noexcept
+{
+    g4::generators::CgalSurfaceReconstructor surfaceReconstructor;
+    Execute(pBuffer, pGeometryProvider, pInterpolator, pPointGenerator, &surfaceReconstructor);
+}
+
+void Generator::Execute(
+    IMeshBuffer* pBuffer,
+    const IGeometryProvider* pGeometryProvider,
+    const IInterpolator* pInterpolator,
+    const IPointGenerator* pPointGenerator,
+    const g4::generators::ISurfaceReconstructor* pSurfaceReconstructor) const noexcept
 {
     // ジオメトリ情報
     std::vector<Point> vn;
@@ -90,12 +102,12 @@ void Generator::Execute(IMeshBuffer* pBuffer,
         }
     }
 
-    const auto generateParams = g4::generators::detail::CgalMeshGenerator::GenerateParams{}
-                                    .SetAngle(3.141592f / 3.0f)
-                                    .SetRadius(1.0f)
-                                    .SetDistance(0.1f)
-                                    .SetPoints(vn.data(), static_cast<int>(vn.size()));
-    m_Generator.Generate(pBuffer, generateParams);
+    const auto reconstructParams = g4::generators::ISurfaceReconstructor::ReconstructParams{}
+                                       .SetAngle(3.141592f / 3.0f)
+                                       .SetRadius(1.0f)
+                                       .SetDistance(0.1f)
+                                       .SetPoints(vn.data(), static_cast<int>(vn.size()));
+    pSurfaceReconstructor->Reconstruct(pBuffer, reconstructParams);
 }
 
 }  // namespace g4
