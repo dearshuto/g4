@@ -18,6 +18,12 @@ add_subdirectory(Externals/googletest)
 
 # add_definitions(-DCGAL_EIGEN3_ENABLED)
 add_library(g4 STATIC)
+target_compile_definitions(g4
+    PUBLIC G4_HEADER_ONLY_MODE
+    PUBLIC CGAL_DISABLE_GMP
+    PUBLIC CGAL_DISABLE_MPFR
+)
+
 target_include_directories(g4
     PUBLIC ${CMAKE_SOURCE_DIR}/Include
     PUBLIC ${CMAKE_SOURCE_DIR}/Externals/boost/assert/include/
@@ -115,25 +121,9 @@ target_include_directories(g4
 
 target_compile_features(g4 PUBLIC cxx_std_20)
 
-# ヘッダーオンリーモードの有効・無効を切り替えるオプション
-option(G4_ENABLE_HEADER_ONLY_MODE "" OFF)
-
-if(G4_ENABLE_HEADER_ONLY_MODE)
-    message("Header only mode enabled")
-    target_compile_definitions(g4
-        PUBLIC G4_HEADER_ONLY_MODE
-        PUBLIC CGAL_DISABLE_GMP
-        PUBLIC CGAL_DISABLE_MPFR
-    )
-endif()
-
 add_subdirectory(Examples)
 add_subdirectory(Include)
-
-if(NOT G4_ENABLE_HEADER_ONLY_MODE)
-    add_subdirectory(Sources)
-endif()
-
+add_subdirectory(Sources)
 add_subdirectory(Tests)
 
 get_target_property(G4_HEADERS g4 SOURCES)
