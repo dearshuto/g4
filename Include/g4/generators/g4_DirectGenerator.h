@@ -1,4 +1,4 @@
-#include <g4/generators/detail/g4_CgalMeshGenerator.h>
+#include <g4/generators/g4_CgalSurfaceReconstructor.h>
 
 namespace g4 {
 class IMeshBuffer;
@@ -13,7 +13,7 @@ public:
     void Generate(IMeshBuffer* pMeshBuffer, const Point* pPoints, int pointCount) const noexcept;
 
 private:
-    detail::CgalMeshGenerator m_CgalMeshGenerator;
+    g4::generators::CgalSurfaceReconstructor m_CgalMeshGenerator;
 };
 
 }  // namespace g4::generators

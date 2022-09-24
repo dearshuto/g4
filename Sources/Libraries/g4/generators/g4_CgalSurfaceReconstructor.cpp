@@ -10,24 +10,36 @@
 #include <CGAL/compute_average_spacing.h>
 #include <CGAL/make_surface_mesh.h>
 #include <CGAL/property_map.h>
-#include <g4/generators/detail/g4_CgalMeshGenerator.h>
+#include <g4/generators/g4_CgalSurfaceReconstructor.h>
 #include <g4/generators/g4_IMeshBuffer.h>
 #include <g4/generators/g4_Types.h>
 
 #include <vector>
 
-namespace g4 { namespace generators { namespace detail {
+namespace g4 { namespace generators {
 
-void CgalMeshGenerator::Generate(IMeshBuffer* pBuffer,
-                                 const Point* pVertexAndNormalBuffer,
-                                 int bufferLength) const noexcept
+void CgalSurfaceReconstructor::Generate(IMeshBuffer* pBuffer,
+                                        const Point* pVertexAndNormalBuffer,
+                                        int bufferLength) const noexcept
 {
     const auto generateParams = GenerateParams{}.SetPoints(pVertexAndNormalBuffer, bufferLength);
     Generate(pBuffer, generateParams);
 }
 
-void CgalMeshGenerator::Generate(IMeshBuffer* pBuffer,
-                                 const GenerateParams& generateParams) const noexcept
+void CgalSurfaceReconstructor::Generate(IMeshBuffer* pBuffer,
+                                        const GenerateParams& generateParams) const noexcept
+{
+    const auto reconstructParams =
+        ReconstructParams{}
+            .SetAngle(generateParams.GetAngle())
+            .SetPoints(generateParams.GetPoints(), generateParams.GetBufferLength())
+            .SetRadius(generateParams.GetRadius())
+            .SetDistance(generateParams.GetDistance());
+    Reconstruct(pBuffer, reconstructParams);
+}
+
+void CgalSurfaceReconstructor::Reconstruct(
+    IMeshBuffer* pBuffer, const ReconstructParams& reconstructParams) const noexcept
 {
     using Kernel = CGAL::Exact_predicates_inexact_constructions_kernel;
     using FT     = Kernel::FT;
@@ -39,15 +51,15 @@ void CgalMeshGenerator::Generate(IMeshBuffer* pBuffer,
         CGAL::Implicit_surface_3<Kernel, CGAL::Poisson_reconstruction_function<Kernel>>;
 
     // Poisson options
-    FT sm_angle = generateParams.GetAngle();  // Min triangle angle in degrees.
+    FT sm_angle = reconstructParams.GetAngle();  // Min triangle angle in degrees.
     FT sm_radius =
-        generateParams.GetRadius();  // Max triangle size w.r.t. point set average spacing.
+        reconstructParams.GetRadius();  // Max triangle size w.r.t. point set average spacing.
     FT sm_distance =
-        generateParams
+        reconstructParams
             .GetDistance();  // Surface Approximation error w.r.t. point set average spacing.
 
-    const auto* pVertexAndNormalBuffer = generateParams.GetPoints();
-    const auto bufferLength            = generateParams.GetBufferLength();
+    const auto* pVertexAndNormalBuffer = reconstructParams.GetPoints();
+    const auto bufferLength            = reconstructParams.GetBufferLength();
     std::vector<std::pair<Kernel::Point_3, Kernel::Vector_3>> v(bufferLength);
     std::transform(
         pVertexAndNormalBuffer, pVertexAndNormalBuffer + bufferLength, std::begin(v),
@@ -113,4 +125,4 @@ void CgalMeshGenerator::Generate(IMeshBuffer* pBuffer,
     }
 }
 
-}}}  // namespace g4::generators::detail
+}}  // namespace g4::generators

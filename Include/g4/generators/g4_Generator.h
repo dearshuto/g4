@@ -1,7 +1,9 @@
 #ifndef g4_Generator_H_
 #define g4_Generator_H_
 
-#include <g4/generators/detail/g4_CgalMeshGenerator.h>
+namespace g4::generators {
+class ISurfaceReconstructor;
+}
 
 namespace g4 {
 
@@ -27,8 +29,11 @@ public:
                  const IInterpolator* pInterpolator,
                  const IPointGenerator* pPointGenerator) const noexcept;
 
-private:
-    g4::generators::detail::CgalMeshGenerator m_Generator;
+    void Execute(IMeshBuffer* pBuffer,
+                 const IGeometryProvider* pGeometryProvider,
+                 const IInterpolator* pInterpolator,
+                 const IPointGenerator* pPointGenerator,
+                 const g4::generators::ISurfaceReconstructor* pSurfaceReconstructor) const noexcept;
 };
 
 }  // namespace g4

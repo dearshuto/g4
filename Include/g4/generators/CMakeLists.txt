@@ -1,4 +1,5 @@
 target_sources(g4 PRIVATE
+    g4_CgalSurfaceReconstructor.h
     g4_DirectGenerator.h
     g4_Generator.h
     g4_IGeometryProvider.h
@@ -6,7 +7,6 @@ target_sources(g4 PRIVATE
     g4_IMeshBuffer.h
     g4_IMeshProvider.h
     g4_IPointGenerator.h
+    g4_ISurfaceReconstructor.h
     g4_Types.h
 )
-
-add_subdirectory(detail)

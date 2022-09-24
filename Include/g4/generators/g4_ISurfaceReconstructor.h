@@ -1,17 +1,17 @@
-#ifndef g4_CgalMeshGenerator_h_
-#define g4_CgalMeshGenerator_h_
+#ifndef g4_ISurfaceReconstructor_H_
+#define g4_ISurfaceReconstructor_H_
 
 namespace g4 {
 struct Point;
-class IMeshBuffer;
+struct IMeshBuffer;
 }  // namespace g4
 
-namespace g4 { namespace generators { namespace detail {
+namespace g4::generators {
 
-class CgalMeshGenerator final
+class ISurfaceReconstructor
 {
 public:
-    class GenerateParams
+    class ReconstructParams
     {
     public:
         float GetAngle() const noexcept { return m_MinTriangleAngle; }
@@ -58,17 +58,12 @@ public:
     };
 
 public:
-    CgalMeshGenerator() noexcept = default;
+    virtual ~ISurfaceReconstructor() noexcept = default;
 
-    ~CgalMeshGenerator() noexcept = default;
-
-    void Generate(IMeshBuffer* pOutBuffer,
-                  const Point* pVertexAndNormalBuffer,
-                  int bufferLength) const noexcept;
-
-    void Generate(IMeshBuffer* pOutBuffer, const GenerateParams& generateParams) const noexcept;
+    virtual void Reconstruct(IMeshBuffer* pOutBuffer,
+                             const ReconstructParams& reconstructParams) const noexcept = 0;
 };
 
-}}}  // namespace g4::generators::detail
+}  // namespace g4::generators
 
 #endif
