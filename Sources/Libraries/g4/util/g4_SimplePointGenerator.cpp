@@ -6,23 +6,12 @@
 #include <Eigen/Geometry>
 #include <vector>
 
-#ifndef G4_HEADER_ONLY_MODE
-// clang-format off
 namespace g4 { namespace util {
-// clang-format on
-#endif
 
-#ifdef G4_HEADER_ONLY_MODE
-int Generate(Point* pOutBuffer,
-             int bufferLength,
-             const Vertex& vertex,
-             const Vertex& gradient) const noexcept
-#else
 int SimplePointGenerator::Generate(Point* pOutBuffer,
                                    int bufferLength,
                                    const Vertex& vertex,
                                    const Vertex& gradient) const noexcept
-#endif
 {
     const auto pointCount = bufferLength;
     std::vector<Eigen::Vector3f> normals;
@@ -60,8 +49,4 @@ int SimplePointGenerator::Generate(Point* pOutBuffer,
     return pointCount;
 }
 
-#ifndef G4_HEADER_ONLY_MODE
-// clang-format off
 }}  // namespace g4::util
-// clang-format on
-#endif

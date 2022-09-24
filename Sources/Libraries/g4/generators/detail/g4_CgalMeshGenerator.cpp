@@ -1,4 +1,3 @@
-#ifndef G4_HEADER_ONLY_MODE
 #include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
 #include <CGAL/IO/facets_in_complex_2_to_triangle_mesh.h>
 #include <CGAL/IO/read_points.h>
@@ -16,23 +15,19 @@
 #include <g4/generators/g4_Types.h>
 
 #include <vector>
-#endif
 
-// ヘッダーオンリーモードではこの cpp ファイルをクラス定義の中にインクルードする
-// "<クラス名>::" が不要になるのでマクロで切り替える
-#ifdef G4_HEADER_ONLY_MODE
-#define CLASS_NAME(func) func
-#else
-#define CLASS_NAME(func) CgalMeshGenerator::func
-#endif
+namespace g4 { namespace generators { namespace detail {
 
-#ifndef G4_HEADER_ONLY_MODE
-namespace g4 {
-namespace generators {
-namespace detail {
-#endif
+void CgalMeshGenerator::Generate(IMeshBuffer* pBuffer,
+                                 const Point* pVertexAndNormalBuffer,
+                                 int bufferLength) const noexcept
+{
+    const auto generateParams = GenerateParams{}.SetPoints(pVertexAndNormalBuffer, bufferLength);
+    Generate(pBuffer, generateParams);
+}
 
-void CLASS_NAME(Generate(IMeshBuffer* pBuffer, const GenerateParams& generateParams) const noexcept)
+void CgalMeshGenerator::Generate(IMeshBuffer* pBuffer,
+                                 const GenerateParams& generateParams) const noexcept
 {
     using Kernel = CGAL::Exact_predicates_inexact_constructions_kernel;
     using FT     = Kernel::FT;
@@ -118,8 +113,4 @@ void CLASS_NAME(Generate(IMeshBuffer* pBuffer, const GenerateParams& generatePar
     }
 }
 
-#ifndef G4_HEADER_ONLY_MODE
-}
-}
-}  // namespace g4::generators::detail
-#endif
+}}}  // namespace g4::generators::detail
