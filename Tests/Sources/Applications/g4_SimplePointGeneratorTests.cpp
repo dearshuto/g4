@@ -8,38 +8,14 @@
 TEST(SimplePointGenerator, Simple)
 {
     constexpr std::array<g4::Point, 4> expected = {{
-        {{
-             0.0f,
-             0.1f,
-             0.0f,
-             0.0f,
-         },
-         {0.0f, 1.0f, 0.0f}},
-        {{
-             0.0f,
-             0.0f,
-             0.1f,
-             0.0f,
-         },
-         {0.0f, 0.0f, 1.0f}},
-        {{
-             0.0f,
-             -0.1f,
-             0.0f,
-             0.0f,
-         },
-         {0.0f, -1.0f, 0.0f}},
-        {{
-             0.0f,
-             0.0f,
-             -0.1f,
-             0.0f,
-         },
-         {0.0f, 0.0f, -1.0f}},
+        {g4::MakeVertex(0.0f, 0.1f, 0.0f), {0.0f, 1.0f, 0.0f}},
+        {g4::MakeVertex(0.0f, 0.0f, 0.1f), {0.0f, 0.0f, 1.0f}},
+        {g4::MakeVertex(0.0f, -0.1f, 0.0f), {0.0f, -1.0f, 0.0f}},
+        {g4::MakeVertex(0.0f, 0.0f, -0.1f), {0.0f, 0.0f, -1.0f}},
     }};
 
-    const g4::Vertex vertex         = {0.0f, 0.0f, 0.0f, 0.0f};
-    const g4::Vertex gradient       = {1.0f, 0.0f, 0.0f, 0.0f};
+    constexpr auto vertex           = g4::MakeVertex(0.0f, 0.0f, 0.0f);
+    constexpr auto gradient         = g4::MakeVertex(1.0f, 0.0f, 0.0f);
     std::array<g4::Point, 4> points = {};
     g4::util::SimplePointGenerator generator;
     generator.Generate(points.data(), static_cast<int>(points.size()), vertex, gradient);
@@ -59,38 +35,14 @@ TEST(SimplePointGenerator, Simple)
 TEST(SimplePointGenerator, AxisY)
 {
     constexpr std::array<g4::Point, 4> expected = {{
-        {{
-             -0.1f,
-             1.0f,
-             0.0f,
-             0.0f,
-         },
-         {1.0f, 0.0f, 0.0f}},
-        {{
-             0.0f,
-             1.0f,
-             0.1f,
-             0.0f,
-         },
-         {0.0f, 0.0f, 1.0f}},
-        {{
-             0.1f,
-             1.0f,
-             0.0f,
-             0.0f,
-         },
-         {-1.0f, 0.0f, 0.0f}},
-        {{
-             0.0f,
-             1.0f,
-             -0.1f,
-             0.0f,
-         },
-         {0.0f, 0.0f, -1.0f}},
+        {g4::MakeVertex(-0.1f, 1.0f, 0.0f), g4::MakeFloat3(1.0f, 0.0f, 0.0f)},
+        {g4::MakeVertex(0.0f, 1.0f, 0.1f), g4::MakeFloat3(0.0f, 0.0f, 1.0f)},
+        {g4::MakeVertex(0.1f, 1.0f, 0.0f), g4::MakeFloat3(-1.0f, 0.0f, 0.0f)},
+        {g4::MakeVertex(0.0f, 1.0f, -0.1f), g4::MakeFloat3(0.0f, 0.0f, -1.0f)},
     }};
 
-    const g4::Vertex vertex         = {0.0f, 1.0f, 0.0f, 0.0f};
-    const g4::Vertex gradient       = {0.0f, 1.0f, 0.0f, 0.0f};
+    constexpr auto vertex           = g4::MakeVertex(0.0f, 1.0f, 0.0f);
+    constexpr auto gradient         = g4::MakeVertex(0.0f, 1.0f, 0.0f);
     std::array<g4::Point, 4> points = {};
     g4::util::SimplePointGenerator generator;
     generator.Generate(points.data(), static_cast<int>(points.size()), vertex, gradient);
@@ -111,38 +63,14 @@ TEST(SimplePointGenerator, AxisY)
 TEST(SimplePointGenerator, LineYZ)
 {
     constexpr std::array<g4::Point, 4> expected = {{
-        {{
-             -0.1f,
-             1.0f,
-             0.0f,
-             0.0f,
-         },
-         {1.0f, 0.0f, 0.0f}},
-        {{
-             0.0f,
-             1.0f,
-             0.1f,
-             0.0f,
-         },
-         {0.0f, 0.0f, 1.0f}},
-        {{
-             0.1f,
-             1.0f,
-             0.0f,
-             0.0f,
-         },
-         {-1.0f, 0.0f, 0.0f}},
-        {{
-             0.0f,
-             1.0f,
-             -0.1f,
-             0.0f,
-         },
-         {0.0f, 0.0f, -1.0f}},
+        {g4::MakeVertex(-0.1f, 1.0f, 0.0f), g4::MakeFloat3(1.0f, 0.0f, 0.0f)},
+        {g4::MakeVertex(0.0f, 1.0f, 0.1f), g4::MakeFloat3(0.0f, 0.0f, 1.0f)},
+        {g4::MakeVertex(0.1f, 1.0f, 0.0f), g4::MakeFloat3(-1.0f, 0.0f, 0.0f)},
+        {g4::MakeVertex(0.0f, 1.0f, -0.1f), g4::MakeFloat3(0.0f, 0.0f, -1.0f)},
     }};
 
-    const g4::Vertex vertex         = {0.0f, 0.5f, 0.5f, 0.0f};
-    const g4::Vertex gradient       = {0.0f, -std::sqrt(2.0f) / 2.0f, std::sqrt(2.0f) / 2.0f, 0.0f};
+    constexpr auto vertex = g4::MakeVertex(0.0f, 0.5f, 0.5f);
+    const auto gradient   = g4::MakeVertex(0.0f, -std::sqrt(2.0f) / 2.0f, std::sqrt(2.0f) / 2.0f);
     std::array<g4::Point, 4> points = {};
     g4::util::SimplePointGenerator generator;
     generator.Generate(points.data(), static_cast<int>(points.size()), vertex, gradient);

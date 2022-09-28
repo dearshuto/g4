@@ -10,9 +10,9 @@
 #include <CGAL/compute_average_spacing.h>
 #include <CGAL/make_surface_mesh.h>
 #include <CGAL/property_map.h>
+#include <g4/common/g4_DataTypes.h>
 #include <g4/generators/g4_CgalSurfaceReconstructor.h>
 #include <g4/generators/g4_IMeshBuffer.h>
-#include <g4/generators/g4_Types.h>
 
 #include <vector>
 

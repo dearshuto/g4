@@ -35,18 +35,18 @@ public:
 
 private:
     std::array<g4::Vertex, 4> m_Vertices                = {{
-                       {0.0f, 0.0f, 0.0f, 0.0f},
-                       {1.0f, 0.0f, 0.0f, 0.0f},
-                       {0.0f, 1.0f, 0.0f, 0.0f},
-                       {0.0f, 0.0f, 1.0f, 0.0f},
+                       g4::MakeVertex(0.0f, 0.0f, 0.0f),
+                       g4::MakeVertex(1.0f, 0.0f, 0.0f),
+                       g4::MakeVertex(0.0f, 1.0f, 0.0f),
+                       g4::MakeVertex(0.0f, 0.0f, 1.0f),
     }};
     std::array<g4::EdgeConnection, 6> m_EdgeConnections = {{
-        {0, 1},
-        {0, 2},
-        {0, 3},
-        {1, 2},
-        {2, 3},
-        {3, 1},
+        g4::MakeEdge(0, 1),
+        g4::MakeEdge(0, 2),
+        g4::MakeEdge(0, 3),
+        g4::MakeEdge(1, 2),
+        g4::MakeEdge(2, 3),
+        g4::MakeEdge(3, 1),
     }};
 };
 
