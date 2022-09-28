@@ -1,4 +1,4 @@
-#include <g4/generators/g4_Types.h>
+#include <g4/common/g4_DataTypes.h>
 #include <g4/util/g4_LinearInterpolator.h>
 #include <gtest/gtest.h>
 
@@ -8,8 +8,8 @@
 // 補間しない
 TEST(LinearInterpolationTest, Empty)
 {
-    const g4::Vertex vertex0 = {0.0f, 0.0f, 0.0f, 0.0f};
-    const g4::Vertex vertex1 = {1.0f, 0.0f, 0.0f, 0.0f};
+    constexpr auto vertex0 = g4::MakeVertex(0.0f, 0.0f, 0.0f);
+    constexpr auto vertex1 = g4::MakeVertex(1.0f, 0.0f, 0.0f);
     g4::util::LinearInterpolator interpolator;
     interpolator.Execute(nullptr, 0, vertex0, vertex1);
     // 落ちなければ OK
@@ -18,8 +18,8 @@ TEST(LinearInterpolationTest, Empty)
 // 1 点だけ補間
 TEST(LinearInterpolationTest, MinSize)
 {
-    const g4::Vertex vertex0                                   = {0.0f, 0.0f, 0.0f, 0.0f};
-    const g4::Vertex vertex1                                   = {1.0f, 0.0f, 0.0f, 0.0f};
+    constexpr auto vertex0                                     = g4::MakeVertex(0.0f, 0.0f, 0.0f);
+    constexpr auto vertex1                                     = g4::MakeVertex(1.0f, 0.0f, 0.0f);
     std::array<g4::InterpolatedVertex, 1> interpolatedVertices = {};
     g4::util::LinearInterpolator interpolator;
     interpolator.Execute(interpolatedVertices.data(), static_cast<int>(interpolatedVertices.size()),
@@ -39,8 +39,8 @@ TEST(LinearInterpolationTest, MinSize)
 // 3 点補間
 TEST(LinearInterpolationTest, Quarter)
 {
-    const g4::Vertex vertex0                                   = {0.0f, 0.0f, 0.0f, 0.0f};
-    const g4::Vertex vertex1                                   = {1.0f, 0.0f, 0.0f, 0.0f};
+    const auto vertex0                                         = g4::MakeVertex(0.0f, 0.0f, 0.0f);
+    const auto vertex1                                         = g4::MakeVertex(1.0f, 0.0f, 0.0f);
     std::array<g4::InterpolatedVertex, 3> interpolatedVertices = {};
     g4::util::LinearInterpolator interpolator;
     interpolator.Execute(interpolatedVertices.data(), static_cast<int>(interpolatedVertices.size()),
@@ -72,8 +72,8 @@ TEST(LinearInterpolationTest, Quarter)
 // 斜め補間
 TEST(LinearInterpolationTest, InterpolationYZ)
 {
-    const g4::Vertex vertex0                                   = {0.0f, 1.0f, 0.0f, 0.0f};
-    const g4::Vertex vertex1                                   = {0.0f, 0.0f, 1.0f, 0.0f};
+    const auto vertex0                                         = g4::MakeVertex(0.0f, 1.0f, 0.0f);
+    const auto vertex1                                         = g4::MakeVertex(0.0f, 0.0f, 1.0f);
     std::array<g4::InterpolatedVertex, 3> interpolatedVertices = {};
     g4::util::LinearInterpolator interpolator;
     interpolator.Execute(interpolatedVertices.data(), static_cast<int>(interpolatedVertices.size()),
